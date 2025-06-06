@@ -81,18 +81,17 @@
     const fallImages = [
       'https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/480937542_647569044356001_8613259168285167719_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHOKQ5aa9-i8NkLQDXIsALizs1LNp74HOXOzUs2nvgc5dAl8xixlG-2x-xRme3-Qz0tMD84vcJCcJ1sjfxZomnD&_nc_ohc=3wsv-Z-nxv0Q7kNvwFraOPM&_nc_oc=Admbtl4wmx3mwaU9HHI-kYa5aPpTOb0A14ia1ilZMN6H2EP1vJSzSw9o8UXH0bUf4oo&_nc_zt=23&_nc_ht=scontent.fsgn5-9.fna&_nc_gid=phebk__-14SXsqmAHSXmHA&oh=00_AfP-Chf1JAULMSOjlcD07M0wsX8-P_yCN7D8pllIWBCI0A&oe=6848F736',
       'https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-6/480686839_647569004356005_8837139071146419915_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGM2lpDtg8uUlC4nXrLg9D7aIayjck6xklohrKNyTrGSW3NgfuCAyiozkqEcsG65OREfqD2Zcdb84e5RmlU7yeo&_nc_ohc=3S1oS1svrcEQ7kNvwF8ZdFx&_nc_oc=Admjrlq8QXVEW_m2U0vYrPLBjV4UqyogiJ2oDxhYYSWyOBpH4UtA71R9mlr-AAPxaMo&_nc_zt=23&_nc_ht=scontent.fsgn5-15.fna&_nc_gid=gFIzpAeUXI0PrWU5rvO1mQ&oh=00_AfMN1-gdRXbSlBU3jSDov1R5CBzL0IQGMltBCEmhFOWCVA&oe=684908FB',
-      // Bạn có thể thêm nhiều link ảnh khác vào đây!
+      // Thêm nhiều link ảnh nếu thích!
     ];
 
     // Ảnh rơi xuống ngẫu nhiên
     setInterval(() => {
       const img = document.createElement('img');
-      // Lấy ngẫu nhiên 1 ảnh trong mảng
       const randomIndex = Math.floor(Math.random() * fallImages.length);
       img.src = fallImages[randomIndex];
       img.className = 'fall-img';
       img.style.left = Math.random() * (window.innerWidth - 80) + 'px';
-      img.style.width = (60 + Math.random() * 60) + 'px';
+      img.style.width = (60 + Math.random() * 0) + 'px';
       img.style.height = img.style.width;
       img.style.animationDuration = (3 + Math.random() * 1.5) + 's';
       document.body.appendChild(img);
@@ -111,7 +110,7 @@
       setTimeout(() => heart.remove(), 5000);
     }, 250);
 
-    // Nút đồng ý
+    // Nút đồng ý: thử đóng trang, nếu không được thì báo hướng dẫn người dùng tự đóng
     function acceptLove() {
       Swal.fire({
         title: '💖',
@@ -122,8 +121,20 @@
         }
       }).then((result) => {
         if (result.isConfirmed) {
-          window.close(); // Thoát trang nếu trình duyệt cho phép
-          // window.location.href = "https://google.com";
+          // Thử đóng cửa sổ
+          window.open('', '_self', ''); // Một số trình duyệt cần hack này trước
+          window.close();
+          // Nếu không đóng được, hiện thông báo hướng dẫn
+          setTimeout(function() {
+            if (!window.closed) {
+              Swal.fire({
+                title: 'Cảm ơn em nha 💖',
+                html: 'Nếu trang chưa tự đóng, hãy bấm nút đa nhiệm và kéo trang này lên để thoát nhé!',
+                confirmButtonText: 'Okie luôn!',
+                customClass: { popup: 'swal2-popup' }
+              });
+            }
+          }, 400);
         }
       });
     }
