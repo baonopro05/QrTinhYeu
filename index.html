@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="sweetalert-custom.css">
 </head>
 <body>
-  <!-- Player YouTube API sẽ nhúng ở đây -->
   <div id="player"></div>
 
   <h1> Làm ny của mik nhá 💖</h1>
@@ -16,6 +15,8 @@
     <button class="love-btn" onclick="acceptLove()">Đồng ý</button>
     <button class="no-btn" onclick="denyLove()">Không đồng ý</button>
   </div>
+
+  <div class="effect-layer"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- YouTube Iframe API -->
@@ -31,7 +32,7 @@
       player = new YT.Player('player', {
         height: '0',
         width: '0',
-        videoId: 'N-SxEhtl8LQ', // ID video YouTube của bạn
+        videoId: 'N-SxEhtl8LQ',
         playerVars: {
           'autoplay': 0,
           'loop': 1,
@@ -65,6 +66,9 @@
     }
     createStars(130);
 
+    // Hiệu ứng động nằm trong effect-layer để không ảnh hưởng button
+    const effectLayer = document.querySelector('.effect-layer');
+
     // Chữ rơi từ trên
     const words = ["Cục cưng à", "Em là cả thế giới", "Mãi bên nhau","Cô gái xinh nhất", "💘", "💖", "💕"];
     setInterval(() => {
@@ -73,7 +77,7 @@
       text.textContent = words[Math.floor(Math.random() * words.length)];
       text.style.left = Math.random() * (window.innerWidth - 120) + "px";
       text.style.animationDuration = (2.4 + Math.random() * 1.7) + "s";
-      document.body.appendChild(text);
+      effectLayer.appendChild(text);
       setTimeout(() => text.remove(), 6000);
     }, 350);
 
@@ -81,7 +85,6 @@
     const fallImages = [
       'https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/480937542_647569044356001_8613259168285167719_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHOKQ5aa9-i8NkLQDXIsALizs1LNp74HOXOzUs2nvgc5dAl8xixlG-2x-xRme3-Qz0tMD84vcJCcJ1sjfxZomnD&_nc_ohc=3wsv-Z-nxv0Q7kNvwFraOPM&_nc_oc=Admbtl4wmx3mwaU9HHI-kYa5aPpTOb0A14ia1ilZMN6H2EP1vJSzSw9o8UXH0bUf4oo&_nc_zt=23&_nc_ht=scontent.fsgn5-9.fna&_nc_gid=phebk__-14SXsqmAHSXmHA&oh=00_AfP-Chf1JAULMSOjlcD07M0wsX8-P_yCN7D8pllIWBCI0A&oe=6848F736',
       'https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-6/480686839_647569004356005_8837139071146419915_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGM2lpDtg8uUlC4nXrLg9D7aIayjck6xklohrKNyTrGSW3NgfuCAyiozkqEcsG65OREfqD2Zcdb84e5RmlU7yeo&_nc_ohc=3S1oS1svrcEQ7kNvwF8ZdFx&_nc_oc=Admjrlq8QXVEW_m2U0vYrPLBjV4UqyogiJ2oDxhYYSWyOBpH4UtA71R9mlr-AAPxaMo&_nc_zt=23&_nc_ht=scontent.fsgn5-15.fna&_nc_gid=gFIzpAeUXI0PrWU5rvO1mQ&oh=00_AfMN1-gdRXbSlBU3jSDov1R5CBzL0IQGMltBCEmhFOWCVA&oe=684908FB',
-      // Thêm nhiều link ảnh nếu thích!
     ];
 
     // Ảnh rơi xuống ngẫu nhiên
@@ -94,7 +97,7 @@
       img.style.width = (60 + Math.random() * 0) + 'px';
       img.style.height = img.style.width;
       img.style.animationDuration = (3 + Math.random() * 1.5) + 's';
-      document.body.appendChild(img);
+      effectLayer.appendChild(img);
       setTimeout(() => img.remove(), 5000);
     }, 800);
 
@@ -106,11 +109,11 @@
       heart.style.left = Math.random() * (window.innerWidth - 40) + "px";
       heart.style.fontSize = (0.8 + Math.random() * 0.6) + "rem";
       heart.style.animationDuration = (2.5 + Math.random() * 1.5) + "s";
-      document.body.appendChild(heart);
+      effectLayer.appendChild(heart);
       setTimeout(() => heart.remove(), 5000);
     }, 250);
 
-    // Nút đồng ý: thử đóng trang, nếu không được thì báo hướng dẫn người dùng tự đóng
+    // Nút đồng ý
     function acceptLove() {
       Swal.fire({
         title: '💖',
@@ -121,16 +124,14 @@
         }
       }).then((result) => {
         if (result.isConfirmed) {
-          // Thử đóng cửa sổ
-          window.open('', '_self', ''); // Một số trình duyệt cần hack này trước
+          window.open('', '_self', '');
           window.close();
-          // Nếu không đóng được, hiện thông báo hướng dẫn
           setTimeout(function() {
             if (!window.closed) {
               Swal.fire({
                 title: 'Cảm ơn em nha 💖',
-                html: 'Nếu trang chưa tự đóng, hãy bấm nút đa nhiệm và kéo trang này lên để thoát nhé!',
-                confirmButtonText: 'Okie luôn!',
+                html: 'Nếu trang chưa tự đóng, hãy bấm nút đa nhiệm trên điện thoại và vuốt trang này lên để đóng nhé!',
+                confirmButtonText: 'Oki luôn!',
                 customClass: { popup: 'swal2-popup' }
               });
             }
@@ -138,7 +139,6 @@
         }
       });
     }
-
     // Nút không đồng ý
     function denyLove() {
       Swal.fire({
