@@ -1,0 +1,460 @@
+body {
+  font-family: "Nunito", Arial, sans-serif;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  color: #222;
+}
+
+/*  */
+.filter-bar {
+  display: block;
+  align-items: center;
+  margin: 20px 40px;
+  /* flex-wrap: wrap; */
+}
+
+.filter-left {
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 60px;
+}
+
+.filter-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-select {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: start;
+  text-align-last: center;
+}
+
+.product-total {
+  font-weight: bold;
+  color: #f72585;
+  font-size: 14px;
+}
+
+
+
+
+/*  */
+.container-product {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 60px;
+
+}
+
+.tieude {
+  text-align: center;
+  color: #f05599;
+  font-size: 30px;
+  font-family: "Inter", sans-serif;
+  padding: 10px 0;
+  margin: 0;
+}
+.products {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-between;
+  gap: 25px;
+}
+.product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  flex: 1 1 calc(25% - 20px);
+  box-sizing: border-box;
+  border-radius: 30px 30px 20px 20px;
+  background: linear-gradient(180deg, #fff8fb 60%, #ffe5f0 100%);
+  overflow: hidden;
+  min-width: 250px;
+  padding-bottom: 20px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform: scale(1);
+  margin-bottom: 20px;
+}
+.product:hover {
+  transform: scale(1.02);
+  z-index: 2;
+  cursor: pointer;
+}
+.product .image-hover {
+  position: absolute;
+  margin: 0 auto;
+  top: 15px;
+  transform: translateX(-50%);
+  left: 50%;
+  width: 80%;
+  height: auto;
+  border-radius: 25px 25px 25px 25px;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  z-index: 1;
+}
+
+.product:hover .image-hover {
+  opacity: 1;
+}
+
+.product:hover .discount {
+  transform: rotate(10deg);
+}
+
+.product:hover p {
+  color: #f48fb1;
+}
+.product img {
+  width: 80%;
+  height: auto;
+  margin: 15px auto 0;
+  border-radius: 25px;
+  display: block;
+}
+.product .image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Giỏ hàng giữ nguyên vị trí và hiển thị mặc định */
+.cart-icon {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  background: #fff0f9;
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  opacity: 1;
+  z-index: 3;
+  border: 1px solid #e04e7d;
+}
+
+.product .image-wrapper .logo-left {
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: #f061a1;
+  object-fit: cover;
+  z-index: 10;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+.cart-icon img {
+  width: 75%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 20px auto 0;
+}
+.product p {
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+  color: #444;
+}
+.price {
+  color: #e04e7d;
+  font-size: 20px;
+  font-weight: bold;
+}
+.prices-sale {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 10px 0 2px;
+}
+.prices-sale .price-sale {
+  text-decoration: line-through;
+  color: #888; /* tuỳ chọn: cho nhạt màu đi */
+  font-size: 15px;
+}
+.sizes {
+  padding: 0 10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.size-box {
+  position: relative;
+  border: 2px solid #6f5ba0;
+  border-radius: 15px;
+  padding: 3px 8px;
+  font-size: 10px;
+  color: #6f5ba0;
+  text-align: center;
+  line-height: 1.2;
+}
+.size-box.active {
+  background-color: #f05599;
+  color: white;
+  border: 2px solid #f05599;
+}
+.see-more {
+  text-align: center;
+  margin: 20px 0;
+}
+.see-more i{
+  font-size: 15px;
+  padding-left: 9px;
+}
+.see-more a {
+  color: #e04e7d;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.buy-now-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #f05599, #f18bbd);
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 25px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 3;
+}
+
+.product:hover .buy-now-btn {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+/* Ảnh gấu bên trái và phải của nút */
+.buy-now-btn img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.buy-now-btn .bear-left {
+  position: absolute;
+  bottom: 15px;
+  left: -5px;
+}
+
+.buy-now-btn .bear-right {
+  position: absolute;
+  bottom: -10px;
+  right: -17px;
+}
+
+.size-box .active {
+  color: white;
+  background-color: #f05599;
+  border-radius: 2px solid #f05599;
+}
+
+
+      /* nút tiếp theo */
+.pagination {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.pagination a {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  color: #333;
+  /* border-radius: 4px; */
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+.pagination a:hover {
+  background-color: #eee;
+}
+
+.pagination a.printer {
+  background-color: #f4589e; /* hồng */
+  color: white;
+  border-color: #f4589e;
+}
+
+
+/* Instagram Section Responsive */
+.instagram-section {
+  width: 100%;
+  background: #fff;
+  padding: 50px 0 30px 0;
+  box-sizing: border-box;
+}
+.instagram-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.instagram-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.instagram-title {
+  font-family: 'Montserrat',Georgia,serif;
+  font-size: 40px;
+  font-style: italic;
+  color: #000;
+  font-weight: 500;
+  margin-bottom: 18px;
+  margin-left: 0;
+}
+.instagram-btn {
+  display: flex;
+  align-items: center;
+  background: #faf6ef;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  padding: 10px 24px;
+  font-size: 15px;
+  color: #231f20;
+  font-weight: 500;
+  letter-spacing: .02em;
+  text-decoration: none;
+  margin-bottom: 18px;
+  transition: background 0.2s;
+}
+.instagram-btn:hover {
+  background: #f7e6d7;
+}
+.instagram-main {
+  display: flex;
+  width: 100%;
+  gap: 32px 24px;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-bottom: 36px;
+}
+.instagram-left {
+  flex-shrink: 0;
+  width: 33%;
+  min-width: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+.instagram-bigimg {
+  width: 100%;
+  max-width: 350px;
+  aspect-ratio: 1/1;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px #f3d6eb;
+  background: #f3f3f3;
+  display: block;
+  height: 100%;
+}
+.instagram-right {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 0;
+  align-content: stretch;
+}
+.instagram-grid img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 12px;
+  background: #fff;
+  object-fit: cover;
+  display: block;
+  height: 100%;
+  min-height: 0;
+}
+.instagram-quote-block {
+  margin: 38px auto 0 auto;
+  text-align: center;
+}
+.instagram-quote {
+  font-family: 'Montserrat',Georgia,serif;
+  font-style: italic;
+  font-size: 28px;
+  color: #d7c8ae;
+  font-weight: 500;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.instagram-dots {
+  margin-top: 22px;
+}
+.instagram-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0 3px;
+}
+.instagram-dot.active {
+  background: #d7c8ae;
+}
+.instagram-dot.inactive {
+  background: #fffbe7;
+  border: 1px solid #d7c8ae;
+}
+
+@media (max-width: 1023px) {
+  .product {
+    width: calc(40% - 20px);
+  }
+}
+
+@media (max-width: 778px) {
+  .product {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .product {
+    width: 100%;
+  }
+}
+
