@@ -129,7 +129,7 @@ h1 {
   border: none;
   border-radius: 30px;
   background: linear-gradient(45deg, #ff79bc 30%, #ffb6e0 100%);
-  color: white;
+  color: rgb(65, 54, 54);
   font-weight: bold;
   box-shadow: 0 2px 12px #ff69b4a8;
   cursor: pointer;
@@ -155,21 +155,19 @@ h1 {
 
 /* SweetAlert2 custom */
 .swal2-popup {
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%) !important;
-  color: #fff !important;
+  background: radial-gradient(ellipse at bottom, #b65db1 0%, #e77373 100%) !important;
+  color: #ffffff !important;
   border: 2px solid #ff69b4 !important;
-  box-shadow: 0 0 24px #ffb6e0cc, 0 0 0px #fff;
 }
 .swal2-title {
-  color: #ffb6e0 !important;
+  color: #111111 !important;
   text-shadow: 0 2px 8px #ff69b4, 0 0 2px #fff;
 }
 .swal2-confirm {
-  background: linear-gradient(45deg, #ff79bc, #ffb6e0) !important;
-  color: #fff !important;
+  background: linear-gradient(45deg, #b47d99, #ffb6e0) !important;
+  color: #312c2c !important;
   font-weight: bold;
   border-radius: 20px !important;
-  box-shadow: 0 2px 8px #ff69b4a8;
 }
 
 /* Responsive cho mobile */
@@ -194,11 +192,11 @@ h1 {
   }
   .swal2-popup {
     padding: 10px !important;
-    font-size: 0.6rem !important;
-    max-width: 48vw !important;
+    font-size: 0.8rem !important;
+    max-width: 70vw !important;
   }
   .swal2-title {
-    font-size: 1.1rem !important;
+    font-size: 1.2rem !important;
     padding: 0 4px !important;
   }
   .swal2-confirm {
