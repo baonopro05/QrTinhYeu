@@ -81,6 +81,7 @@
       setTimeout(() => text.remove(), 6000);
     }, 350);
 
+    
     // Danh sách các ảnh muốn rơi
     const fallImages = [
       'https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/480937542_647569044356001_8613259168285167719_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHOKQ5aa9-i8NkLQDXIsALizs1LNp74HOXOzUs2nvgc5dAl8xixlG-2x-xRme3-Qz0tMD84vcJCcJ1sjfxZomnD&_nc_ohc=3wsv-Z-nxv0Q7kNvwFraOPM&_nc_oc=Admbtl4wmx3mwaU9HHI-kYa5aPpTOb0A14ia1ilZMN6H2EP1vJSzSw9o8UXH0bUf4oo&_nc_zt=23&_nc_ht=scontent.fsgn5-9.fna&_nc_gid=phebk__-14SXsqmAHSXmHA&oh=00_AfP-Chf1JAULMSOjlcD07M0wsX8-P_yCN7D8pllIWBCI0A&oe=6848F736',
@@ -94,7 +95,7 @@
       img.src = fallImages[randomIndex];
       img.className = 'fall-img';
       img.style.left = Math.random() * (window.innerWidth - 80) + 'px';
-      img.style.width = (60 + Math.random() * 0) + 'px';
+      img.style.width = (70 + Math.random() *70) + 'px';
       img.style.height = img.style.width;
       img.style.animationDuration = (3 + Math.random() * 1.5) + 's';
       effectLayer.appendChild(img);
@@ -114,31 +115,20 @@
     }, 250);
 
     // Nút đồng ý
-    function acceptLove() {
-      Swal.fire({
-        title: '💖',
-        text: "Em là người con gái xinh nhất trong lòng ah",
-        confirmButtonText: 'Yêu lắm luôn!',
-        customClass: {
-          popup: 'swal2-popup'
-        }
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.open('', '_self', '');
-          window.close();
-          setTimeout(function() {
-            if (!window.closed) {
-              Swal.fire({
-                title: 'Cảm ơn em nha 💖',
-                html: 'Nếu trang chưa tự đóng, hãy bấm nút đa nhiệm trên điện thoại và vuốt trang này lên để đóng nhé!',
-                confirmButtonText: 'Oki luôn!',
-                customClass: { popup: 'swal2-popup' }
-              });
-            }
-          }, 400);
-        }
-      });
+function acceptLove() {
+  Swal.fire({
+    title: '💖',
+    text: "Em là người con gái xinh nhất trong lòng ah",
+    confirmButtonText: 'Yêu lắm luôn!',
+    customClass: {
+      popup: 'swal2-popup'
     }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "https://google.com";
+    }
+  });
+}
     // Nút không đồng ý
     function denyLove() {
       Swal.fire({
