@@ -4,17 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Website Tỏ Tình</title>
+  <link rel="stylesheet" href="qr.css">
+  <style>
+    /* Custom SweetAlert2 background */
+    .swal2-popup {
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%) !important;
+      color: #fff !important;
+      border: 2px solid #ff69b4 !important;
+      box-shadow: 0 0 24px #ffb6e0cc, 0 0 0px #fff;
+    }
+    .swal2-title {
+      color: #ffb6e0 !important;
+      text-shadow: 0 2px 8px #ff69b4, 0 0 2px #fff;
+    }
+    .swal2-confirm {
+      background: linear-gradient(45deg, #ff79bc, #ffb6e0) !important;
+      color: #fff !important;
+      font-weight: bold;
+      border-radius: 20px !important;
+      box-shadow: 0 2px 8px #ff69b4a8;
+    }
+  </style>
 </head>
 <body>
-  <h1>Anh yêu em 💖</h1>
-
+  <h1> Cô gái ah iu 💖</h1>
+  <div class="button-container">
+    <button class="love-btn" onclick="acceptLove()">Đồng ý</button>
+    <button class="no-btn" onclick="denyLove()">Không đồng ý</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     // Vẽ bầu trời sao
     function createStars(num) {
       for (let i = 0; i < num; i++) {
         const star = document.createElement("div");
         star.className = "star";
-        // Kích thước và vị trí ngẫu nhiên
         const size = Math.random() * 2.2 + 0.8;
         star.style.width = size + "px";
         star.style.height = size + "px";
@@ -51,8 +75,34 @@
       setTimeout(() => heart.remove(), 5000);
     }, 250);
 
-    function showQR() {
-      document.getElementById("qrModal").style.display = "flex";
+    // Nút đồng ý
+function acceptLove() {
+  Swal.fire({
+    title: '💖',
+    text: "Em là người con gái xinh nhất trong lòng ah",
+    confirmButtonText: 'Yêu lắm luôn!',
+    customClass: {
+      popup: 'swal2-popup'
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.close(); // Thoát trang nếu trình duyệt cho phép
+      // Nếu không được, có thể chuyển hướng:
+      // window.location.href = "https://google.com";
+    }
+  });
+}
+
+    // Nút không đồng ý
+    function denyLove() {
+      Swal.fire({
+        title: 'Chờ em mà!',
+        text: "Anh sẽ chờ đến khi em đồng ý nhé!",
+        confirmButtonText: 'Okeeee',
+        customClass: {
+          popup: 'swal2-popup'
+        }
+      });
     }
   </script>
 </body>
